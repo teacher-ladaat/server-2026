@@ -17,7 +17,6 @@
 ## HTTP request (RESTful API)
 url | method/verb | body (object)
 --|--|--
-<!-- https://www.myserver.com/products | GET | - -->
 https://www.myserver.com/products?sort=name&page=1&limit=30 | GET | -
 https://www.myserver.com/products/100 | GET | -
 https://www.myserver.com/products | POST | `{ name: '', img: byte[], ... }`
