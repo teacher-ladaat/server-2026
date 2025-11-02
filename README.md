@@ -30,7 +30,11 @@ https://www.myserver.com/products/100 | PATCH | `{ price: 11 }`
 - always use RESTful convensions for urls, methods, and status codes
 
 ## HTTP response (RESTful API)
-- url
-- method type
 - body - only *JSON*s
 - headers
+- status codes (success/failed)
+
+### Staus Codes
+- **Success** - `200` - success, `201` - created, `204` - no content
+- **Client Error** - `400`, `404` - not found
+- **Server Error** - `500`
