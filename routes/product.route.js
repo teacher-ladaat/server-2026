@@ -8,7 +8,7 @@ import { addProduct, deleteProduct, getAllProducts, getProductById, updateProduc
 const router = Router();
 
 // method: GET בקשת
-// url: http://localhost:3000/products
+// url: http://localhost:3000/products?page=2&limit=5&name=nnn
 router.get('/', getAllProducts);
 
 // method: GET בקשת

@@ -5,14 +5,18 @@ const products = [
 ];
 
 export const getAllProducts = (req, res) => {
-    // send מחזיר גם מחרוזות וגם טיפוסים שונים
-    // res.send('Hello World!')
+    const { page = 1, limit = 5, name = '' } = req.query;
 
     // כאן לא מקובל להחזיר סטטוס 404 אם לא מצאנו
     // אלא מחזירים סטטוס 200 עם מערך ריק
 
+    // pagintation - עימוד
+    const result = products
+        .filter(p => p.name.toLowerCase().includes(name.toLowerCase()))
+        .slice((page - 1) * limit, page * limit);
+
     // json להחזרת אוביקטים
-    res.json(products);
+    res.json(result);
 };
 
 export const getProductById = (req, res) => {
