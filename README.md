@@ -38,3 +38,27 @@ https://www.myserver.com/products/100 | PATCH | `{ price: 11 }`
 - **Success** - `200` - success, `201` - created, `204` - no content
 - **Client Error** - `400`, `404` - not found
 - **Server Error** - `500`
+
+
+## Env
+- contains environments variables, like: `PORT`, `DB_NAME`
+- `.env` is secret file, not include in git & github
+- `.env` file structure:
+    ```.env
+    KEY1=value1
+    KEY2=value2
+    KEY3=value3
+    ```
+- to read we need:
+    ```bash
+    npm i dotenv
+    ```
+    ```js
+    import { config } from 'dotenv';
+
+    config();
+
+    console.log(process.env.KEY1)
+    console.log(process.env.KEY2)
+    console.log(process.env.KEY3)
+    ```
