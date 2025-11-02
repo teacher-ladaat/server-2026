@@ -34,7 +34,7 @@ https://www.myserver.com/products/100 | PATCH | `{ price: 11 }`
 - headers
 - status codes (success/failed)
 
-### Staus Codes
+### Status Codes
 - **Success** - `200` - success, `201` - created, `204` - no content
 - **Client Error** - `400`, `404` - not found
 - **Server Error** - `500`
