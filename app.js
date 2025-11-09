@@ -5,6 +5,7 @@ import productRouter from './routes/product.route.js';
 import userRouter from './routes/user.route.js';
 import { addRequestDate, printHello } from './middlewares/simple.middleware.js';
 import { blockDays } from './middlewares/blockDays.middleware.js';
+import { errorHandler } from './middlewares/errors.middleware.js';
 // import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
@@ -36,10 +37,14 @@ app.use(printHello);
 // 1. הוספת מידלוואר רק לראוטר אחד
 // app.use('/products', blockDays([1, 7]));
 // app.use('/products', productRouter);
-app.use('/products', printHello, blockDays([1, 7]), productRouter);
+app.use('/products', printHello, blockDays([7]), productRouter);
 
 // /users-ניתוב שמתחיל ב
 app.use('/users', userRouter);
+
+// מקשרים את המידלוואר של השגיאות מתחת לכל הראוטרים
+// כל שגיאה ש"נזרוק" תגיע לכאן
+app.use(errorHandler);
 
 // 3. הרצת השרת על פורט מסוים
 const port = process.env.PORT ?? 3000;

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { printHello } from "../middlewares/simple.middleware";
+import { printHello } from "../middlewares/simple.middleware.js";
 
 const router = Router();
 
