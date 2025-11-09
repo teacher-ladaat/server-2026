@@ -4,7 +4,7 @@ const products = [
     { id: 101, name: 'cheese', price: 6.5 },
 ];
 
-export const getAllProducts = (req, res) => {
+export const getAllProducts = (req, res, next) => {
     const { page = 1, limit = 5, name = '' } = req.query;
 
     // כאן לא מקובל להחזיר סטטוס 404 אם לא מצאנו
@@ -19,7 +19,7 @@ export const getAllProducts = (req, res) => {
     res.json(result);
 };
 
-export const getProductById = (req, res) => {
+export const getProductById = (req, res, next) => {
     // console.log(req.params); // אוביקט עם פרמטרי חובה
     // console.log(req.query); // אוביקט עם פרמטרי רשות
 
@@ -38,7 +38,7 @@ export const getProductById = (req, res) => {
     }
 };
 
-export const addProduct = (req, res) => {
+export const addProduct = (req, res, next) => {
     console.log(req.body);
 
     products.push(req.body);
@@ -46,7 +46,7 @@ export const addProduct = (req, res) => {
     res.send(req.body);
 };
 
-export const updateProduct = (req, res) => {
+export const updateProduct = (req, res, next) => {
     console.log(req.body);
 
 
@@ -73,7 +73,7 @@ export const updateProduct = (req, res) => {
     res.json(p);
 };
 
-export const deleteProduct = (req, res) => {
+export const deleteProduct = (req, res, next) => {
     const { id } = req.params;
     const pIndex = products.findIndex(x => x.id === +id);
 
@@ -89,4 +89,4 @@ export const deleteProduct = (req, res) => {
     res.status(204);
     res.end(); // end - לא מחזיר כלום
     // res.status(204).json();
-}
+};

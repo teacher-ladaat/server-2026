@@ -80,4 +80,7 @@
 # הוספת השינוי הנוכחי לקומיט קודם
 git commit --amend # עם לערוך את הודעת הקומיט
 git commit --amend --no-edit # בלי לערוך את הודעת הקומיט
+
+git remote remove origin # מחיקת הקישור לגיטהאב
+git remote add origin new_url # הוספת קישור חדש לגיטהאב
 ```

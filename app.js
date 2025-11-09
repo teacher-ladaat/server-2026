@@ -3,6 +3,8 @@
 import express from 'express';
 import productRouter from './routes/product.route.js';
 import userRouter from './routes/user.route.js';
+import { addRequestDate, printHello } from './middlewares/simple.middleware.js';
+import { blockDays } from './middlewares/blockDays.middleware.js';
 // import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
@@ -16,22 +18,25 @@ const app = express();
 // app.use(...)
 // app.use('/users', ...)
 // אם שולחים כתובת, ההגדרות יהיו לכל הכתובות שמתחילות בערך שנשלח
+app.use(addRequestDate);
 
 // כדי שיצליח לקבל באדי
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// קישור של המידלוואר לפני כל הבקשות בשרת
+// כאן יש באדי
+// json/urlencoded כי הוא נמצא אחרי המידלוואר
+app.use(printHello);
+
 // =============== הגדרת הניתובים
 // /products-ניתוב שמתחיל ב
-// http://loaclhost:3000/products
-// http://loaclhost:3000/products/123 GET
-// http://loaclhost:3000/products/123 PUT
-// http://loaclhost:3000/products POST
-// http://loaclhost:3000/products/123/abc/user POST
-// http://loaclhost:3000/product/123 - לא יגיע לראוטר
-// יגיע לראוטר של מוצרים שייבאנו
-// /products כשמגיע לראוטר חותך את התחילית של
+// מבצע את המידלווארס לפי הסדר
+// עובר לראוטר רק אם לא החזיר תגובה במידלוואר של שבת
+app.use('/products', blockDays([1, 7]));
 app.use('/products', productRouter);
+
+// /users-ניתוב שמתחיל ב
 app.use('/users', userRouter);
 
 // 3. הרצת השרת על פורט מסוים

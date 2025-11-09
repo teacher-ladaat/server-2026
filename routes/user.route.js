@@ -4,7 +4,7 @@ const router = Router();
 
 // get all users
 router.get('/', (req, res) => {
-    res.send('get all users');
+    res.send('get all users, req time: ' + (new Date() - req.currentDate));
 });
 
 // register - add new user (regular POST)
