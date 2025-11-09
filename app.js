@@ -2,6 +2,7 @@
 // const express = require('express');
 import express from 'express';
 import productRouter from './routes/product.route.js';
+import userRouter from './routes/user.route.js';
 // import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
@@ -31,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 // יגיע לראוטר של מוצרים שייבאנו
 // /products כשמגיע לראוטר חותך את התחילית של
 app.use('/products', productRouter);
+app.use('/users', userRouter);
 
 // 3. הרצת השרת על פורט מסוים
 const port = process.env.PORT ?? 3000;
