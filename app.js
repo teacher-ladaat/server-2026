@@ -2,11 +2,11 @@
 // const express = require('express');
 import express from 'express';
 import productRouter from './routes/product.route.js';
-import { config } from 'dotenv';
+// import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
 // process.env ומכניס את הערכים כאוביקט לתוך
-config();
+// config();
 
 // 2. יצירת השרת
 const app = express();
