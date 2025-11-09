@@ -1,11 +1,15 @@
 import { Router } from "express";
 import { addProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "../controllers/product.controller.js";
+import { blockDays } from "../middlewares/blockDays.middleware.js";
 
 // הראוטר יכיל את כל הניתובים ששייכים למשאב מסוים
 // resource - משאב
 // URL - מושפע משם המשאב בד"כ ברבים
 // http://localhost:3000/products
 const router = Router();
+
+// 2. הוספת מידלוואר לראוט אחד
+router.use(blockDays([6]));
 
 // method: GET בקשת
 // url: http://localhost:3000/products?page=2&limit=5&name=nnn

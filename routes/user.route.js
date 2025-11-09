@@ -1,9 +1,12 @@
 import { Router } from "express";
+import { printHello } from "../middlewares/simple.middleware";
 
 const router = Router();
 
 // get all users
-router.get('/', (req, res) => {
+// הוספת מידלוואר רק לנתיב אחד בתוך הראוט
+// מבצע לפי הסדר
+router.get('/', printHello, (req, res) => {
     res.send('get all users, req time: ' + (new Date() - req.currentDate));
 });
 

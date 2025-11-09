@@ -33,8 +33,10 @@ app.use(printHello);
 // /products-ניתוב שמתחיל ב
 // מבצע את המידלווארס לפי הסדר
 // עובר לראוטר רק אם לא החזיר תגובה במידלוואר של שבת
-app.use('/products', blockDays([1, 7]));
-app.use('/products', productRouter);
+// 1. הוספת מידלוואר רק לראוטר אחד
+// app.use('/products', blockDays([1, 7]));
+// app.use('/products', productRouter);
+app.use('/products', printHello, blockDays([1, 7]), productRouter);
 
 // /users-ניתוב שמתחיל ב
 app.use('/users', userRouter);

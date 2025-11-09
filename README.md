@@ -83,4 +83,6 @@ git commit --amend --no-edit # בלי לערוך את הודעת הקומיט
 
 git remote remove origin # מחיקת הקישור לגיטהאב
 git remote add origin new_url # הוספת קישור חדש לגיטהאב
+
+git clone my_remote_url # מוריד את הפרויקט מגיטהאב ומשאיר את החיבור לגיט
 ```
