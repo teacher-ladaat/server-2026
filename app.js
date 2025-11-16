@@ -36,7 +36,7 @@ app.use(cors({ origin: 'http://127.0.0.1:5500' })); // מאפשר רק לקלי�
 // bulit-in middlewares
 // express middleware creators
 // 1. כדי שיצליח לקבל באדי
-//    req.body
+//    req.body מוסיף
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

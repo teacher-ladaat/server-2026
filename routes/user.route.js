@@ -1,23 +1,20 @@
 import { Router } from "express";
 import { printHello } from "../middlewares/simple.middleware.js";
+import { getAllUsers, login, register } from "../controllers/user.controller.js";
+import { joiValidator } from "../middlewares/joi-validator.middleware.js";
+import { validateUser } from "../models/user.model.js";
 
 const router = Router();
 
 // get all users
 // הוספת מידלוואר רק לנתיב אחד בתוך הראוט
 // מבצע לפי הסדר
-router.get('/', printHello, (req, res) => {
-    res.send('get all users, req time: ' + (new Date() - req.currentDate));
-});
+router.get('/', printHello, getAllUsers);
 
 // register - add new user (regular POST)
-router.post('/', (req, res) => {
-    res.send('register');
-});
+router.post('/', joiValidator(validateUser.register), register);
 
 // login - check exists user
-router.post('/login', (req, res) => {
-    res.send('login');
-});
+router.post('/login', joiValidator(validateUser.login), login);
 
 export default router;
