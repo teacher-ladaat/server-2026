@@ -29,6 +29,7 @@ export const getProductById = (req, res, next) => {
         // מחזירים סטטוס של שגיאה
         // json חובה להחזיר אותו לפני שכותבים
         // res.status(404).json({ message: `product ${req.params.id} not found!` });
+        // next - מקבל פרמטר הולך אוטומטית למידלוואר של השגיאות
         next({ status: 404, message: `product ${req.params.id} not found!` });
     }
     else {

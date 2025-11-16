@@ -75,8 +75,10 @@
   ```
 
 # Git Commands
-
 ```bash
+git init # initial local git repository
+git add . # add all files to Index
+
 # הוספת השינוי הנוכחי לקומיט קודם
 git commit --amend # עם לערוך את הודעת הקומיט
 git commit --amend --no-edit # בלי לערוך את הודעת הקומיט

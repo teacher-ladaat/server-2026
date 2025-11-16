@@ -5,7 +5,7 @@ import productRouter from './routes/product.route.js';
 import userRouter from './routes/user.route.js';
 import { addRequestDate, printHello } from './middlewares/simple.middleware.js';
 import { blockDays } from './middlewares/blockDays.middleware.js';
-import { errorHandler } from './middlewares/errors.middleware.js';
+import { errorHandler, urlNotFound } from './middlewares/errors.middleware.js';
 // import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
@@ -22,6 +22,8 @@ const app = express();
 app.use(addRequestDate);
 
 // כדי שיצליח לקבל באדי
+// bulit-in middlewares
+// express middleware creators
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,6 +43,9 @@ app.use('/products', printHello, blockDays([7]), productRouter);
 
 // /users-ניתוב שמתחיל ב
 app.use('/users', userRouter);
+
+// אחרי כל הראוטרים
+app.use(urlNotFound);
 
 // מקשרים את המידלוואר של השגיאות מתחת לכל הראוטרים
 // כל שגיאה ש"נזרוק" תגיע לכאן
