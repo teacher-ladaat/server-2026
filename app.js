@@ -6,6 +6,9 @@ import userRouter from './routes/user.route.js';
 import { addRequestDate, printHello } from './middlewares/simple.middleware.js';
 import { blockDays } from './middlewares/blockDays.middleware.js';
 import { errorHandler, urlNotFound } from './middlewares/errors.middleware.js';
+import morgan from 'morgan';
+import cors from 'cors';
+
 // import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
@@ -21,11 +24,26 @@ const app = express();
 // אם שולחים כתובת, ההגדרות יהיו לכל הכתובות שמתחילות בערך שנשלח
 app.use(addRequestDate);
 
-// כדי שיצליח לקבל באדי
+// third-party middlewares
+// 1. morgan - מוניטור, לוג של השרת
+app.use(morgan('dev'));
+// 2. cors
+//    פונקציה שמאפשרת גישה לכל לקוח/שרת
+// app.use(cors());
+// app.use(cors({ methods: 'POST' })); // מאפשר רק בקשות פוסט
+app.use(cors({ origin: 'http://127.0.0.1:5500' })); // מאפשר רק לקליינט שמתחיל בכתובת הזו
+
 // bulit-in middlewares
 // express middleware creators
+// 1. כדי שיצליח לקבל באדי
+//    req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// 2. קבצים סטטיים - כלומר כאשר נחפש את הקובץ יחפש בתיקיה הזו
+//    fs-ויחזיר את תוכן הקובץ בלי להשתמש ב
+app.use(express.static('public'));
+// app.use(express.static('public/images'));
 
 // קישור של המידלוואר לפני כל הבקשות בשרת
 // כאן יש באדי

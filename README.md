@@ -74,6 +74,22 @@
   console.log(process.env.KEY3);
   ```
 
+## Middlewares
+3 kinds:
+- build-in middlewares:
+  - `express.json()`, `express.static(...)`
+- custom middlewares
+  - error handler (4 parameters), not found, block days (middleware creator)
+- third-party middlewares (you need to do: `npm i ...`):
+  - `cors`, `morgan`, ...
+
+## next function
+each middleware gets: req, res, next.
+
+`next` can:
+- move to next middleware (no parameters)
+- move to error handler (one parameter)
+
 # Git Commands
 ```bash
 git init # initial local git repository
