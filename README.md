@@ -90,6 +90,22 @@ each middleware gets: req, res, next.
 - move to next middleware (no parameters)
 - move to error handler (one parameter)
 
+## upload files middleware
+by `multer` third-party library.
+1. install:
+    ```
+    npm i multer
+    ```
+2. create `upload-files.js` file in `middlewares` folder:
+   - import multer
+   - create & export `upload` variable
+   - if we want comlex configuration we can add it to `multer`
+   ```js
+    import multer from "multer";
+    export const upload = multer({ dest: 'public/' }); // simple
+    export const uploadPlus = multer({ fileFilter, storage, ... }); // complex
+   ```
+
 # Git Commands
 ```bash
 git init # initial local git repository

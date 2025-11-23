@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { addProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from "../controllers/product.controller.js";
 import { blockDays } from "../middlewares/blockDays.middleware.js";
+import { upload } from "../middlewares/upload-files.middlware.js";
 
 // הראוטר יכיל את כל הניתובים ששייכים למשאב מסוים
 // resource - משאב
@@ -21,7 +22,7 @@ router.get('/:id', getProductById);
 
 // method: POST בקשת
 // url: http://localhost:3000/products
-router.post('/', addProduct);
+router.post('/', upload.single('img'), addProduct);
 
 router.put('/:id', updateProduct);
 

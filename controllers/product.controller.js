@@ -41,11 +41,18 @@ export const getProductById = (req, res, next) => {
 };
 
 export const addProduct = (req, res, next) => {
+    // console.log(req.file);
+
     console.log(req.body);
 
-    products.push(req.body);
+    const newProduct = {
+        id: Date.now(),
+        ...req.body,
+        img: req.file.path
+    }
+    products.push(newProduct);
 
-    res.send(req.body);
+    res.send(newProduct);
 };
 
 export const updateProduct = (req, res, next) => {
