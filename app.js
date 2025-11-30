@@ -9,11 +9,11 @@ import { errorHandler, urlNotFound } from './middlewares/errors.middleware.js';
 import morgan from 'morgan';
 import cors from 'cors';
 
-// import { config } from 'dotenv';
+import { config } from 'dotenv';
 
 // .env-קורא את כל קבצי ה
 // process.env ומכניס את הערכים כאוביקט לתוך
-// config();
+config();
 
 // 2. יצירת השרת
 const app = express();
