@@ -10,6 +10,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import { config } from 'dotenv';
+import { connectDB } from './config/db.js';
 
 // .env-קורא את כל קבצי ה
 // process.env ומכניס את הערכים כאוביקט לתוך
@@ -17,6 +18,9 @@ config();
 
 // 2. יצירת השרת
 const app = express();
+
+// התחברות לדטהבייס
+connectDB();
 
 // =============== הגדרות על כל השרת
 // app.use(...)
