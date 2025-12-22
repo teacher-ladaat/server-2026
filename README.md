@@ -107,7 +107,7 @@ by `multer` third-party library.
 2. create `upload-files.js` file in `middlewares` folder:
    - import multer
    - create & export `upload` variable
-   - if we want comlex configuration we can add it to `multer`
+   - if we want complex configuration we can add it to `multer`
    ```js
     import multer from "multer";
     export const upload = multer({ dest: 'public/' }); // simple
