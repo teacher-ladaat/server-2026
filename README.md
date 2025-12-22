@@ -34,7 +34,7 @@
 
 - url is length limited & not secure
 - body is unlimited & secure (in https)
-- always use RESTful convensions for urls, methods, and status codes
+- always use RESTful conventions for urls, methods, and status codes
 
 ## HTTP response (RESTful API)
 
