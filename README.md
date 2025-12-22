@@ -74,6 +74,14 @@
   console.log(process.env.KEY3);
   ```
 
+- another way to use (instead of `dotenv`) - from node v20:
+  
+  ```bash
+  node ---env-file=<env-file-name> <node-file-name>
+  ```
+  
+  (multiple `--env-file` arguments can be used)
+
 ## Middlewares
 3 kinds:
 - build-in middlewares:
