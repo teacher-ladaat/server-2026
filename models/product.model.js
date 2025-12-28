@@ -1,8 +1,9 @@
-import { model, Schema, SchemaType } from "mongoose";
+import { model, Schema } from "mongoose";
 
 // 1. יצירת סכמה שהיא תבנית לאוביקט בודד בטבלה
 const productSchema = new Schema({
     // _id - נוצר אוטומטית
+    // רק אם לא כותבים במפורש
 
     // לכל שדה נגדיר את הטיפוס
     // בד"כ לא נשתמש בצורה זו

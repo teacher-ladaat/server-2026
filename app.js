@@ -35,6 +35,7 @@ app.use(morgan('dev'));
 //    פונקציה שמאפשרת גישה לכל לקוח/שרת
 // app.use(cors());
 // app.use(cors({ methods: 'POST' })); // מאפשר רק בקשות פוסט
+// בד"כ יגיע ממשתני סביבה
 app.use(cors({ origin: 'http://127.0.0.1:5500' })); // מאפשר רק לקליינט שמתחיל בכתובת הזו
 
 // bulit-in middlewares
