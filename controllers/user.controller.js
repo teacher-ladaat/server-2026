@@ -2,6 +2,7 @@ export const getAllUsers = (req, res) => {
     res.send('get all users, req time: ' + (new Date() - req.currentDate));
 };
 
+// TODO: register
 export const register = (req, res) => {
     res.send('register');
 };
