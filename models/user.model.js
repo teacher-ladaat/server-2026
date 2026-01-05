@@ -1,4 +1,35 @@
 import Joi from 'joi';
+import { model, Schema } from 'mongoose';
+import bcrypt from 'bcryptjs';
+
+// אוסף משתמשים בדטהבייס
+const userSchema = new Schema({
+    username: String,
+    email: { type: String, unique: true },
+    password: String,
+    phone: String
+});
+
+// DB-פונקציה שמתבצעת לפני שמירה ב
+// DB-ניתן לשלוח מערך של פעולות על ה
+// חובה להגדיר את הפונקציה כך ולא כפונקצית חץ
+// this-כי יש שימוש ב
+// וזיס מתנהג בצורה שונה בפונקצית חץ
+userSchema.pre('save', function () {
+    // this - מקבל את האוביקט שהולך להישמר עכשיו בדטהבייס
+
+    // TODO 
+    //הסולט צריך להגיע ממשתני סביבה
+    //צריך לבדוק האם שינינו את הסיסמא
+
+    const salt = bcrypt.genSaltSync(12);
+    const hash = bcrypt.hashSync(this.password, salt);
+    this.password = hash;
+
+    // כשמסיים את הפונקציה הסיסמא המוצפנת נשמרת אוטומטית
+});
+
+export default model('User', userSchema);
 
 export const validateUser = {
     // user login (email, password)

@@ -1,5 +1,5 @@
 /**
- * middlware creator
+ * middleware creator
  * @param {*} schema joi validation schema
  * @returns 
  */
