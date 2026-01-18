@@ -23,10 +23,35 @@ userSchema.pre('save', function () {
     //צריך לבדוק האם שינינו את הסיסמא
 
     const salt = bcrypt.genSaltSync(12);
+    // מומלץ להשתמש באסינכרוני
     const hash = bcrypt.hashSync(this.password, salt);
     this.password = hash;
 
     // כשמסיים את הפונקציה הסיסמא המוצפנת נשמרת אוטומטית
+});
+
+// method - אוביקט בודד באוסף
+//static - כל האוסף/המחלקה
+userSchema.method('comparePasswords', function (newPassword) {
+    // this - משתמש נוכחי שנשווה אליו את הסיסמא שהתקבלה
+    // this.password - סיסמא מוצפנת מהדטהבייס
+
+    // compareSync - משווה סיסמא מוצפנת ללא מוצפנת
+    // מומלץ להשתמש באסינכרוני
+    const isEqual = bcrypt.compareSync(newPassword, this.password);
+
+    return isEqual;
+});
+
+// עבור כל הפונקציות שמחזירות את היוזר לקליינט
+userSchema.set('toJSON', {
+    virtuals: true,
+    transform(doc, converted) {
+        delete converted.__v;
+        delete converted._id;
+        delete converted.password;
+        // converted.password = '****';
+    }
 });
 
 export default model('User', userSchema);
