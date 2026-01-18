@@ -113,6 +113,19 @@ by `multer` third-party library.
     export const upload = multer({ dest: 'public/' }); // simple
     export const uploadPlus = multer({ fileFilter, storage, ... }); // complex
    ```
+  
+## Security
+### strong passwords
+by `joi` validator
+### Store in db hashed passwords
+by `bcrypt`/`bcryptjs`:
+```js
+salt = bcrypt.getSalt(12)
+bcrypt.hashSync('pass', salt);
+bcrypt.compareSync('pass', hashedPass);
+```
+### user roles
+by JWT (Json Web Token).
 
 # Git Commands
 ```bash
