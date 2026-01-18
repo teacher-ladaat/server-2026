@@ -115,16 +115,22 @@ by `multer` third-party library.
    ```
   
 ## Security
-### strong passwords
-by `joi` validator
-### Store in db hashed passwords
+### 1. Force strong passwords
+by `joi` validator:
+```js
+password: Joi.string().pattern(/^[a-zA-Z0-9]{3,30}$/)
+```
+
+### 2. Store in db hashed passwords
 by `bcrypt`/`bcryptjs`:
 ```js
-salt = bcrypt.getSalt(12)
+salt = bcrypt.getSalt(12); // strong enough for production
 bcrypt.hashSync('pass', salt);
 bcrypt.compareSync('pass', hashedPass);
+
+// Recommended: use async functions instead of sync functions
 ```
-### user roles
+### 3. User Roles
 by JWT (Json Web Token).
 
 # Git Commands
