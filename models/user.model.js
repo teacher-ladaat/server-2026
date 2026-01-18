@@ -7,7 +7,8 @@ const userSchema = new Schema({
     username: String,
     email: { type: String, unique: true },
     password: String,
-    phone: String
+    phone: String,
+    role: { type:String, enums: ['admin', 'user'], required: true }
 });
 
 // פונקציה שמתבצעת לפני שמירה ב-DB
