@@ -9,6 +9,7 @@ export const register = async (req, res, next) => {
         const newUser = new User(req.body);
         await newUser.save(); // הולך לפרה-סייב ושומר סיסמא מוצפנת
 
+        // TODO: return token
         res.status(201).json(newUser);
     } catch (error) {
         next({ status: 409, message: error.message });
@@ -28,8 +29,7 @@ export const login = async (req, res, next) => {
             return next({ status: 400, message: `email/password invalid` });
         }
 
-        // TODO: remove user password
-        // user.password = "****";
+        // TODO: return token
         return res.json(user);
     } catch (error) {
         next({ message: error.message });
