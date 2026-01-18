@@ -34,7 +34,7 @@
 
 - url is length limited & not secure
 - body is unlimited & secure (in https)
-- always use RESTful convensions for urls, methods, and status codes
+- always use RESTful conventions for urls, methods, and status codes
 
 ## HTTP response (RESTful API)
 
@@ -74,6 +74,14 @@
   console.log(process.env.KEY3);
   ```
 
+- another way to use (instead of `dotenv`) - from node v20:
+  
+  ```bash
+  node ---env-file=<env-file-name> <node-file-name>
+  ```
+  
+  (multiple `--env-file` arguments can be used)
+
 ## Middlewares
 3 kinds:
 - build-in middlewares:
@@ -99,7 +107,7 @@ by `multer` third-party library.
 2. create `upload-files.js` file in `middlewares` folder:
    - import multer
    - create & export `upload` variable
-   - if we want comlex configuration we can add it to `multer`
+   - if we want complex configuration we can add it to `multer`
    ```js
     import multer from "multer";
     export const upload = multer({ dest: 'public/' }); // simple

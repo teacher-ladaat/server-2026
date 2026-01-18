@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 // אוסף משתמשים בדטהבייס
@@ -18,7 +18,7 @@ const userSchema = new Schema({
 userSchema.pre('save', function () {
     // this - מקבל את האוביקט שהולך להישמר עכשיו בדטהבייס
 
-    // TODO: הערות 
+    // TODO 
     //הסולט צריך להגיע ממשתני סביבה
     //צריך לבדוק האם שינינו את הסיסמא
 
@@ -47,16 +47,3 @@ export const validateUser = {
     })
     // user update password (old_password, password, repeat_password)
 };
-
-// סיסמאות באתר
-//1. סיסמא חזקה
-// 2. נשמור סיסמא מוצפנת
-
-// הצפנה - HASH
-// one-way
-// סיסמא לסיסמא מוצפנת
-
-//קידוד
-// tow-way
-// סיסמא לסיסמא מקודדת
-// מסיסמא מקודדת לסיסמא רגילה

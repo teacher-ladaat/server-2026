@@ -6,8 +6,8 @@ export const connectDB = async () => {
 
     try {
         await mongoose.connect(DB_URI); // חזר פרומיס
-        console.log(`mongo connected succesfuly to ${DB_URI}`);        
+        console.log(`mongo connected successfully to ${DB_URI}`);
     } catch (error) {
-        console.log(`mongo connection falied`, error.message);        
+        console.log(`mongo connection failed`, error.message);
     }
 };
