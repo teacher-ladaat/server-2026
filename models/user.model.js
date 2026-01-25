@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import { model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 // אוסף משתמשים בדטהבייס
 const userSchema = new Schema({
@@ -8,7 +9,8 @@ const userSchema = new Schema({
     email: { type: String, unique: true },
     password: String,
     phone: String,
-    role: { type:String, enums: ['admin', 'user'], required: true }
+    // TODO: in `joi` schema
+    role: { type:String, enums: ['admin', 'user'], required: true, default: 'user' }
 });
 
 // פונקציה שמתבצעת לפני שמירה ב-DB
@@ -56,6 +58,13 @@ userSchema.set('toJSON', {
 });
 
 export default model('User', userSchema);
+
+export const generateToken = ({ user_id, role }) => {
+    const userPayload = { user_id, role };
+    const secretKey = process.env.JWT_SECRET ?? 'secretKey123';
+    const token = jwt.sign(userPayload, secretKey, { expiresIn: '1h' });
+    return token;
+};
 
 export const validateUser = {
     // user login (email, password)

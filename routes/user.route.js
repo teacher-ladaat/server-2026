@@ -1,15 +1,16 @@
 import { Router } from "express";
-import { printHello } from "../middlewares/simple.middleware.js";
 import { getAllUsers, login, register } from "../controllers/user.controller.js";
 import { joiValidator } from "../middlewares/joi-validator.middleware.js";
 import { validateUser } from "../models/user.model.js";
+import { auth, isAdmin } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
 // get all users
 // הוספת מידלוואר רק לנתיב אחד בתוך הראוט
 // מבצע לפי הסדר
-router.get('/', printHello, getAllUsers);
+// ניתן הרשאה רק למנהל
+router.get('/', auth, isAdmin, getAllUsers);
 
 // register - add new user (regular POST)
 router.post('/', joiValidator(validateUser.register), register);

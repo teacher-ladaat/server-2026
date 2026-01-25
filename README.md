@@ -131,8 +131,15 @@ bcrypt.compareSync('pass', hashedPass);
 // Recommended: use async functions instead of sync functions
 ```
 ### 3. User Roles
-by JWT (Json Web Token).
-
+by JWT (Json Web Token):
+1. install:
+    ```bash
+    npm i jsonwebtoken
+    ```
+2. create `generateToken` fn in `user.model.js`
+    - return token in `login` && `register` in user route
+3. create `auth` middlewares and verify the token
+    - use in specific route/method
 # Git Commands
 ```bash
 git init # initial local git repository

@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import User, { generateToken } from "../models/user.model.js";
 
 export const getAllUsers = (req, res, next) => {
     res.send('get all users, req time: ' + (new Date() - req.currentDate));
@@ -26,12 +26,13 @@ export const login = async (req, res, next) => {
         const user = await User.findOne({ email });
 
         if (!user || !user.comparePasswords(password)) {
-            return next({ status: 400, message: `email/password invalid` });
+            return next({ status: 403, message: `Authentication failed` });
         }
 
         // TODO: return token
-        return res.json(user);
+        const token = generateToken({ user_id: user._id, role: user.role })
+        return res.json({ token: token });
     } catch (error) {
-        next({ message: error.message });
+        next({ status: 403, message: `Authentication failed` });
     }
 };
