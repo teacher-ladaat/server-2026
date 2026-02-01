@@ -19,6 +19,8 @@ config();
 // 2. יצירת השרת
 const app = express();
 
+console.log('App started');
+
 // התחברות לדטהבייס
 connectDB();
 
