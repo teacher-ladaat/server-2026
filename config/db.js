@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-console.log('try branch');
+console.log('db finished');
 
 
 export const connectDB = async () => {
