@@ -1,20 +1,23 @@
 // 1. ייבוא אחרי התקנה third-party module
 // const express = require('express');
+import 'dotenv/config';
 import express from 'express';
-import productRouter from './routes/product.route.js';
-import userRouter from './routes/user.route.js';
-import { addRequestDate, printHello } from './middlewares/simple.middleware.js';
-import { blockDays } from './middlewares/blockDays.middleware.js';
-import { errorHandler, urlNotFound } from './middlewares/errors.middleware.js';
 import morgan from 'morgan';
 import cors from 'cors';
 
-import { config } from 'dotenv';
+import productRouter from './routes/product.route.js';
+import userRouter from './routes/user.route.js';
+import mailRouter from './routes/mail.route.js';
+import { addRequestDate, printHello } from './middlewares/simple.middleware.js';
+import { blockDays } from './middlewares/blockDays.middleware.js';
+import { errorHandler, urlNotFound } from './middlewares/errors.middleware.js';
+
 import { connectDB } from './config/db.js';
 
 // .env-קורא את כל קבצי ה
 // process.env ומכניס את הערכים כאוביקט לתוך
-config();
+// dotenv/config כבר נטען לפני הייבוא של המודולים כדי לוודא
+// שמשתני הסביבה זמינים גם במודולים שמייבאים את process.env בקובץ שלהם.
 
 // 2. יצירת השרת
 const app = express();
@@ -68,6 +71,7 @@ app.use('/products', printHello, blockDays([7]), productRouter);
 
 // /users-ניתוב שמתחיל ב
 app.use('/users', userRouter);
+app.use('/mail', mailRouter);
 
 // אחרי כל הראוטרים
 app.use(urlNotFound);
