@@ -1,0 +1,21 @@
+- name: AI Code Review Agent
+  # You may pin to the exact commit or the version.
+  # uses: samushi/code-review-action@4fad2d25676e45517619ae6ef5ff72903ff61c7a
+  uses: samushi/code-review-action@v1.0.4
+  with:
+    # GitHub token for API access
+    github-token: # default is ${{ github.token }}
+    # OpenAI API key for AI analysis
+    openai-api-key: 
+    # OpenAI model to use for analysis
+    ai-model: # optional, default is gpt-4-turbo-preview
+    # File patterns to analyze (comma-separated)
+    file-patterns: # optional, default is **/*.js,**/*.jsx,**/*.ts,**/*.tsx
+    # File patterns to exclude (comma-separated)
+    exclude-patterns: # optional, default is **/node_modules/**,**/dist/**,**/.next/**
+    # Minimum score threshold for approval recommendation
+    min-score-threshold: # optional, default is 7
+    # Whether to post review comment on PR
+    post-comment: # optional, default is true
+    # Fail the action if score is below threshold
+    fail-on-low-score: # optional, default is false
